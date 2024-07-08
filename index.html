@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WBJEE College Predictor</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("https://static.vecteezy.com/system/resources/thumbnails/002/920/996/small/college-building-academic-building-university-in-traditional-english-style-with-trees-and-a-green-lawn-and-playground-illustration-on-white-background-free-vector.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        width: 90%;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 30px;
+        font-size: 28px;
+      }
+      form {
+        display: grid;
+        gap: 20px;
+      }
+      label {
+        font-weight: bold;
+        color: #34495e;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #bdc3c7;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 15px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      input[type="submit"]:hover {
+        background-color: #2980b9;
+      }
+      #loader {
+        display: none;
+        text-align: center;
+        padding: 20px;
+      }
+      #result {
+        display: none;
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        border: 2px solid black;
+      }
+      .loader-container {
+        display: none;
+        text-align: center;
+        padding: 20px;
+      }
+      .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @media (max-width: 600px) {
+        .container {
+          width: 95%;
+          padding: 20px;
+          margin: 20px auto;
+        }
+        h1 {
+          font-size: 24px;
+        }
+        input[type="submit"] {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- The rest of the HTML remains the same -->
+  </body>
+</html>
+  <body>
+    <div class="container">
+      <h1>WBJEE College Predictor</h1>
+      <form id="predictor-form">
+        <label for="rank">Your Rank:</label>
+        <input type="number" id="rank" required />
+
+        <label for="branch">Preferred Branch:</label>
+        <select id="branch" required>
+          <option value="CSE">Computer Science Engineering (CSE)</option>
+          <option value="IT">Information Technology (IT)</option>
+          <option value="ECE">
+            Electronics and Communication Engineering (ECE)
+          </option>
+          <option value="ALL">ALL</option>
+        </select>
+
+        <label for="collegeType">College Type:</label>
+        <select id="collegeType" required>
+          <option value="Government">Government</option>
+          <option value="Private">Private</option>
+          <option value="Both">Both</option>
+        </select>
+
+        <label for="category">Category:</label>
+        <select id="category" required>
+          <option value="General">General</option>
+          <option value="OBC-A">OBC-A</option>
+          <option value="OBC-B">OBC-B</option>
+          <option value="SC">SC</option>
+          <option value="ST">ST</option>
+          <option value="PWD">PWD</option>
+          <option value="TFW">TFW</option>
+        </select>
+
+        <input type="submit" value="Predict" />
+      </form>
+
+      <div id="loader" class="loader-container">
+        <div class="loader"></div>
+        <p>Processing......</p>
+      </div>
+
+      <div id="result"></div>
+    </div>
+
+    <script>
+      // ... (JavaScript code remains the same as in the previous response) ...
+      const collegeData = {
+        CSE: [
+          // Government Colleges
+          {
+            name: "Jadavpur University",
+            cutoffs: [52, 10],
+            type: "Government",
+          },
+          {
+            name: "Calcutta University",
+            cutoffs: [1207, 725],
+            type: "Government",
+          },
+          { name: "KGEC (Nadia)", cutoffs: [1819, 1329], type: "Government" },
+          {
+            name: "JGEC (Jalpaiguri)",
+            cutoffs: [3672, 2060],
+            type: "Government",
+          },
+          {
+            name: "GCECT (Hooghly)",
+            cutoffs: [5235, 3743],
+            type: "Government",
+          },
+          {
+            name: "GCELT (Kolkata)",
+            cutoffs: [6385, 4465],
+            type: "Government",
+          },
+          {
+            name: "Aliah University",
+            cutoffs: [4800, 6102],
+            type: "Government",
+          },
+          { name: "MAKAUT", cutoffs: [6338, 3797], type: "Government" },
+          {
+            name: "Ramkrishna Mahato (Purulia)",
+            cutoffs: [8746, 7118],
+            type: "Government",
+          },
+          {
+            name: "University of Kalyani",
+            cutoffs: [8721, 3814],
+            type: "Government",
+          },
+          { name: "UIT Burdwan", cutoffs: [25498, 9169], type: "Government" },
+          {
+            name: "Serampore Textile",
+            cutoffs: [6705, 6249],
+            type: "Government",
+          },
+          {
+            name: "GCETTB (Berhampore)",
+            cutoffs: [12730, 7084],
+            type: "Government",
+          },
+          { name: "Alipurduar", cutoffs: [17716], type: "Government" },
+          {
+            name: "Cooch Behar Govt. Engineering College",
+            cutoffs: [14161, 7339],
+            type: "Government",
+          },
+          { name: "Ghani Khan", cutoffs: [16096], type: "Government" },
+          // Private Colleges
+          { name: "IEM", cutoffs: [2533, 3621, 6398], type: "Private" },
+          { name: "Heritage", cutoffs: [3214, 4387, 4261], type: "Private" },
+          { name: "TMSL", cutoffs: [4975, 6342, 8120], type: "Private" },
+          { name: "HIT", cutoffs: [8536, 8138, 6902], type: "Private" },
+          { name: "NSEC", cutoffs: [12296, 12100, 17171], type: "Private" },
+          { name: "AOT", cutoffs: [13635, 14095, 11846], type: "Private" },
+          {
+            name: "NIT(Narula)",
+            cutoffs: [22840, 20293, 18300],
+            type: "Private",
+          },
+          { name: "St.Thomas", cutoffs: [8598, 16343, 27660], type: "Private" },
+          { name: "MSIT", cutoffs: [19812, 24841, 40285], type: "Private" },
+          { name: "TINT", cutoffs: [23789, 29084, 59527], type: "Private" },
+          {
+            name: "BP Poddar",
+            cutoffs: [14413, 17865, 21803],
+            type: "Private",
+          },
+          { name: "RCCIT", cutoffs: [11955, 15265, 29009], type: "Private" },
+          { name: "FIEM", cutoffs: [29228, 34464, 26334], type: "Private" },
+          {
+            name: "Dr.BC Roy",
+            cutoffs: [25477, 29123, 27461],
+            type: "Private",
+          },
+        ],
+        IT: [
+          // Government Colleges
+          {
+            name: "Jadavpur University",
+            cutoffs: [96, 282],
+            type: "Government",
+          },
+          {
+            name: "Calcutta University",
+            cutoffs: [1783, 952],
+            type: "Government",
+          },
+          { name: "KGEC (Nadia)", cutoffs: [4689, 1996], type: "Government" },
+          {
+            name: "JGEC (Jalpaiguri)",
+            cutoffs: [5435, 2686],
+            type: "Government",
+          },
+          {
+            name: "GCECT (Hooghly)",
+            cutoffs: [7719, 5656],
+            type: "Government",
+          },
+          {
+            name: "GCELT (Kolkata)",
+            cutoffs: [9992, 5942],
+            type: "Government",
+          },
+          { name: "MAKAUT", cutoffs: [11081, 5132], type: "Government" },
+          {
+            name: "University of Kalyani",
+            cutoffs: [11877, 5197],
+            type: "Government",
+          },
+          { name: "UIT Burdwan", cutoffs: [35953, 12932], type: "Government" },
+          {
+            name: "Serampore Textile",
+            cutoffs: [12207, 7904],
+            type: "Government",
+          },
+          // Private Colleges
+          { name: "IEM", cutoffs: [4016, 5726, 39862], type: "Private" },
+          { name: "Heritage", cutoffs: [4090, 5869, 5417], type: "Private" },
+          { name: "TMSL", cutoffs: [6807, 9831, 14737], type: "Private" },
+          { name: "HIT", cutoffs: [13032, 18782, 8919], type: "Private" },
+          { name: "NSEC", cutoffs: [21492, 22269, 24681], type: "Private" },
+          {
+            name: "NIT(Narula)",
+            cutoffs: [40205, 32982, 32684],
+            type: "Private",
+          },
+          {
+            name: "St.Thomas",
+            cutoffs: [13858, 23019, 43555],
+            type: "Private",
+          },
+          { name: "MSIT", cutoffs: [24584, 33399, 50898], type: "Private" },
+          { name: "TINT", cutoffs: [34182, 46382, 95240], type: "Private" },
+          {
+            name: "BP Poddar",
+            cutoffs: [19585, 29495, 39480],
+            type: "Private",
+          },
+          { name: "RCCIT", cutoffs: [19941, 25156, 40027], type: "Private" },
+          { name: "FIEM", cutoffs: [41454, 52133, 59690], type: "Private" },
+          {
+            name: "Dr.BC Roy",
+            cutoffs: [42632, 42519, 49826],
+            type: "Private",
+          },
+        ],
+        ECE: [
+          // Government Colleges
+          { name: "Jadavpur University", cutoffs: [265], type: "Government" },
+          {
+            name: "Calcutta University",
+            cutoffs: [1982, 1227],
+            type: "Government",
+          },
+          { name: "KGEC (Nadia)", cutoffs: [5204, 2080], type: "Government" },
+          {
+            name: "JGEC (Jalpaiguri)",
+            cutoffs: [6432, 3297],
+            type: "Government",
+          },
+          { name: "MAKAUT", cutoffs: [21614, 8650], type: "Government" },
+          {
+            name: "University of Kalyani",
+            cutoffs: [14601, 9178],
+            type: "Government",
+          },
+          { name: "UIT Burdwan", cutoffs: [53369, 20267], type: "Government" },
+          {
+            name: "Cooch Behar Govt. Engineering College",
+            cutoffs: [25537, 10940],
+            type: "Government",
+          },
+          { name: "Alipurduar", cutoffs: [34565], type: "Government" },
+        ],
+      };
+
+      document.getElementById("predictor-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const form = document.getElementById("predictor-form");
+  const loader = document.getElementById("loader");
+  const result = document.getElementById("result");
+
+  form.style.display = "none";
+  loader.style.display = "block";
+
+  setTimeout(() => {
+    const rank = parseInt(document.getElementById("rank").value);
+    const branch = document.getElementById("branch").value;
+    const collegeType = document.getElementById("collegeType").value;
+    const category = document.getElementById("category").value;
+
+    // Filter suitable colleges
+    let suitableColleges = [];
+    const branches = branch === "ALL" ? ["CSE", "IT", "ECE"] : [branch];
+
+    branches.forEach(branchName => {
+      const collegesForBranch = collegeData[branchName] || [];
+      suitableColleges = suitableColleges.concat(
+        collegesForBranch.filter(college => {
+          const isTypeMatch = collegeType === "Both" || college.type === collegeType;
+          const isRankMatch = college.cutoffs.some(cutoff => rank <= cutoff);
+          return isTypeMatch && isRankMatch;
+        })
+      );
+    });
+
+    // Remove duplicates
+    suitableColleges = Array.from(new Set(suitableColleges));
+
+    loader.style.display = "none";
+    result.style.display = "block";
+
+    if (suitableColleges.length > 0) {
+      result.innerHTML = "<h2>Suitable Colleges:</h2>";
+      suitableColleges.forEach((college) => {
+        let branchName = branch === "ALL"
+          ? collegeData.CSE.includes(college)
+            ? "CSE"
+            : collegeData.IT.includes(college)
+              ? "IT"
+              : "ECE"
+          : branch;
+        result.innerHTML += `<p>${college.name} - ${branchName} (${college.type})</p>`;
+      });
+    } else {
+      result.innerHTML = "<p>No suitable colleges found for your rank and preferences.</p>";
+    }
+  }, 2000);
+});
+    </script>
+  </body>
+</html>
