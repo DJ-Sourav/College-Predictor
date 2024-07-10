@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="Icon" type="image/jpg" href="Favicon.jpg">
     <title>WBJEE College Predictor</title>
     <style>
       body {
@@ -106,7 +107,6 @@
     </style>
   </head>
   <body>
-    <!-- The rest of the HTML remains the same -->
   </body>
 </html>
   <body>
@@ -156,13 +156,12 @@
     </div>
 
     <script>
-      // ... (JavaScript code remains the same as in the previous response) ...
       const collegeData = {
         CSE: [
           // Government Colleges
           {
             name: "Jadavpur University",
-            cutoffs: [52, 10],
+            cutoffs: [266, 10],
             type: "Government",
           },
           {
@@ -252,7 +251,7 @@
           // Government Colleges
           {
             name: "Jadavpur University",
-            cutoffs: [96, 282],
+            cutoffs: [607, 261],
             type: "Government",
           },
           {
@@ -321,7 +320,7 @@
         ],
         ECE: [
           // Government Colleges
-          { name: "Jadavpur University", cutoffs: [265], type: "Government" },
+          { name: "Jadavpur University", cutoffs: [624,265], type: "Government" },
           {
             name: "Calcutta University",
             cutoffs: [1982, 1227],
@@ -364,7 +363,6 @@
     const collegeType = document.getElementById("collegeType").value;
     const category = document.getElementById("category").value;
 
-    // Filter suitable colleges
     let suitableColleges = [];
     const branches = branch === "ALL" ? ["CSE", "IT", "ECE"] : [branch];
 
@@ -379,7 +377,6 @@
       );
     });
 
-    // Remove duplicates
     suitableColleges = Array.from(new Set(suitableColleges));
 
     loader.style.display = "none";
