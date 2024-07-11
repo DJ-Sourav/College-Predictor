@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+head>
+    <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+  <<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="Icon" type="image/jpg" href="Favicon.jpg">
     <title>WBJEE College Predictor</title>
@@ -319,33 +319,36 @@
           },
         ],
         ECE: [
-          // Government Colleges
-          { name: "Jadavpur University", cutoffs: [624,265], type: "Government" },
-          {
-            name: "Calcutta University",
-            cutoffs: [1982, 1227],
-            type: "Government",
-          },
-          { name: "KGEC (Nadia)", cutoffs: [5204, 2080], type: "Government" },
-          {
-            name: "JGEC (Jalpaiguri)",
-            cutoffs: [6432, 3297],
-            type: "Government",
-          },
-          { name: "MAKAUT", cutoffs: [21614, 8650], type: "Government" },
-          {
-            name: "University of Kalyani",
-            cutoffs: [14601, 9178],
-            type: "Government",
-          },
-          { name: "UIT Burdwan", cutoffs: [53369, 20267], type: "Government" },
-          {
-            name: "Cooch Behar Govt. Engineering College",
-            cutoffs: [25537, 10940],
-            type: "Government",
-          },
-          { name: "Alipurduar", cutoffs: [34565], type: "Government" },
-        ],
+    // Government Colleges (unchanged)
+    { name: "Jadavpur University", cutoffs: [624, 265], type: "Government" },
+    { name: "Calcutta University", cutoffs: [1982, 1227], type: "Government" },
+    { name: "KGEC (Nadia)", cutoffs: [5204, 2080], type: "Government" },
+    { name: "JGEC (Jalpaiguri)", cutoffs: [6432, 3297], type: "Government" },
+    { name: "MAKAUT", cutoffs: [21614, 8650], type: "Government" },
+    { name: "University of Kalyani", cutoffs: [14601, 9178], type: "Government" },
+    { name: "UIT Burdwan", cutoffs: [53369, 20267], type: "Government" },
+    { name: "Cooch Behar Govt. Engineering College", cutoffs: [25537, 10940], type: "Government" },
+    { name: "Alipurduar", cutoffs: [34565], type: "Government" },
+    // Private Colleges (new data from PDF)
+    { name: "IEM", cutoffs: [12294], type: "Private" },
+    { name: "Heritage", cutoffs: [13626, 12140], type: "Private" },
+    { name: "TMSL", cutoffs: [19024, 23452], type: "Private" },
+    { name: "HIT", cutoffs: [31408, 14684], type: "Private" },
+    { name: "NSEC", cutoffs: [39949, 53855], type: "Private" },
+    { name: "AOT", cutoffs: [36764, 23597], type: "Private" },
+    { name: "St.Thomas", cutoffs: [35294, 87672], type: "Private" },
+    { name: "NIT(Narula)", cutoffs: [79218, 57831], type: "Private" },
+    { name: "MSIT", cutoffs: [54140, 89826], type: "Private" },
+    { name: "TINT", cutoffs: [79850, 94661], type: "Private" },
+    { name: "BP Poddar", cutoffs: [57110, 93654], type: "Private" },
+    { name: "RCCIT", cutoffs: [44697, 84052], type: "Private" },
+    { name: "FIEM", cutoffs: [76573, 78428], type: "Private" },
+    { name: "Dr.BC Roy", cutoffs: [79247, 69825], type: "Private" },
+    { name: "MCKV", cutoffs: [63509, 69788], type: "Private" },
+    { name: "HETC", cutoffs: [75825, 78842], type: "Private" },
+    { name: "BBIT", cutoffs: [79881, 91363], type: "Private" },
+    { name: "Asansole", cutoffs: [79281, 75244], type: "Private" }
+  ],
       };
 
       document.getElementById("predictor-form").addEventListener("submit", function (e) {
